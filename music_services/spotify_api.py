@@ -46,7 +46,7 @@ class SpotifyAPI:
             print(f"An error occurred: {e}")
             return None
 
-    def get_spotify_artist_id(self, artist_name):
+    def get_artist_id(self, artist_name):
         """
         Get the Spotify ID for a given artist.
         """
@@ -84,6 +84,31 @@ class SpotifyAPI:
         except requests.exceptions.RequestException as e:
             print(f"An error occurred: {e}")
             return None
+
+    def get_artist_details(self, artist_id):
+        """
+        Get the details of a Spotify artist by their ID.
+        """
+        if not self.SPOTIFY_ACCESS_TOKEN:
+            self.SPOTIFY_ACCESS_TOKEN = self.get_spotify_access_token()
+            if not self.SPOTIFY_ACCESS_TOKEN:
+                print("Failed to obtain access token")
+                return None
+
+        url = f"https://api.spotify.com/v1/artists/{artist_id}"
+        headers = {
+            'Authorization': f'Bearer {self.SPOTIFY_ACCESS_TOKEN}'
+        }
+
+        try:
+            response = requests.get(url, headers=headers)
+            response.raise_for_status()
+            return response.json()
+
+        except requests.exceptions.RequestException as e:
+            print(f"An error occurred: {e}")
+            return None
+
 
     def get_album_id(self, artist_name, album_name):
         """
