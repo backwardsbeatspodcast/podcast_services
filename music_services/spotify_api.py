@@ -5,6 +5,9 @@ from secret_management.secret_manager_type import SecretManagerType
 from secret_management.secret_manager_factory import secret_manager_factory
 
 class SpotifyAPI:
+    """
+    A class to interact with the Spotify API.
+    """
     def __init__(self, secret_manager_type: SecretManagerType = SecretManagerType.DOTENV):
         self.secret_manager = secret_manager_factory(secret_manager_type)
         self.SPOTIFY_ACCESS_TOKEN = None
