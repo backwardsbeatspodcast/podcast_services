@@ -1,11 +1,25 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='music_services',
+    name='backwards_beats_services',  # or any project-wide name
     version='0.1',
-    packages=find_packages(),
-    install_requires=['requests', 'python-dotenv'],
+    packages=find_packages(
+        include=[
+            'music_services',
+            'music_services.*',
+            'podbean_services',
+            'podbean_services.*',
+            'secret_management',
+            'secret_management.*',
+            'shared_services',
+            'shared_services.*',
+        ]
+    ),
+    install_requires=[
+        'requests',
+        'python-dotenv'
+    ],
     author='Dan Woodard',
-    description='A package to interact with Spotify, Discogs, Last.FM and MusicBrainz APIs.',
+    description='Shared services for podcast automation, including Spotify, Podbean, Last.FM, and secret management.',
 )
 
