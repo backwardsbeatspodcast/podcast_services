@@ -14,5 +14,5 @@ test-podbean:
 	$(PYTHON) $(TEST_RUNNER) --type integration --target podbean
 
 test-spotify:
-	$(PYTHON) $(TEST_RUNNER) --type unit --target spotify
+	$(PYTHON) $(TEST_RUNNER) --type integration --target spotify
 
