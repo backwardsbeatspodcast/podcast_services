@@ -4,6 +4,12 @@ from secret_management.secret_manager_type import SecretManagerType
 
 
 class SpotifyAPI(BaseAPI):
+    """
+    SpotifyAPI class for interacting with the Spotify Web API.
+    This class handles authentication and provides methods to retrieve artist, album, and song information.
+    It uses the client_credentials grant type for authentication.
+    """
+
     BASE_URL = 'https://api.spotify.com/v1'
     TOKEN_URL = 'https://accounts.spotify.com/api/token'
 
@@ -51,6 +57,12 @@ class SpotifyAPI(BaseAPI):
             return None
 
     def _make_get_request(self, endpoint: str, params: dict = None):
+        """
+        Makes a GET request to the Spotify API.
+            :param endpoint: The API endpoint to call.
+            :param params: Optional parameters for the request.
+            :return: The JSON response from the API.
+        """
         access_token = self.get_access_token()
         if not access_token:
             print("[SpotifyAPI] No access token available.")
@@ -70,6 +82,11 @@ class SpotifyAPI(BaseAPI):
     # Spotify mostly uses GET requests for API calls below, so no need for POST method here.
 
     def get_artist_id(self, artist_name: str):
+        """
+        Retrieves the Spotify ID of an artist by their name.
+            :param artist_name: The name of the artist.
+            :return: The Spotify ID of the artist.
+        """
         params = {'q': artist_name, 'type': 'artist', 'limit': 1}
         data = self._make_get_request('search', params)
         if data and data.get('artists', {}).get('items'):
@@ -80,9 +97,20 @@ class SpotifyAPI(BaseAPI):
         return None
 
     def get_artist_details(self, artist_id: str):
+        """
+        Retrieves details of an artist using their Spotify ID.
+            :param artist_id: The Spotify ID of the artist.
+            :return: The details of the artist.
+        """
         return self._make_get_request(f'artists/{artist_id}')
 
     def get_album_id(self, artist_name: str, album_name: str):
+        """
+        Retrieves the Spotify ID of an album by its name and artist.
+            :param artist_name: The name of the artist.
+            :param album_name: The name of the album.
+            :return: The Spotify ID of the album.
+        """
         params = {'q': album_name, 'type': 'album', 'limit': 1}
         data = self._make_get_request('search', params)
         if data and data.get('albums', {}).get('items'):
@@ -93,9 +121,20 @@ class SpotifyAPI(BaseAPI):
         return None
 
     def get_album_details(self, album_id: str):
+        """
+        Retrieves details of an album using its Spotify ID. 
+            :param album_id: The Spotify ID of the album.
+            :return: The details of the album.
+        """
         return self._make_get_request(f'albums/{album_id}')
 
     def get_song_id(self, artist_name: str, song_name: str):
+        """
+        Retrieves the Spotify ID of a song by its name and artist.
+            :param artist_name: The name of the artist.
+            :param song_name: The name of the song.
+            :return: The Spotify ID of the song.
+        """
         query = f'{song_name} artist:{artist_name}'
         params = {'q': query, 'type': 'track', 'limit': 1}
         data = self._make_get_request('search', params)
@@ -107,5 +146,10 @@ class SpotifyAPI(BaseAPI):
         return None
 
     def get_song_details(self, song_id: str):
+        """
+        Retrieves details of a song using its Spotify ID.
+            :param song_id: The Spotify ID of the song.
+            :return: The details of the song.
+        """
         return self._make_get_request(f'tracks/{song_id}')
 
