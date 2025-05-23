@@ -32,6 +32,23 @@ class PodbeanAPI(BaseAPI):
             print(f"[PodbeanAPI] Error calling '{endpoint}': {e}")
             return None
 
+    def _make_post_request(self, endpoint: str, data: dict = None):
+        access_token = self.get_access_token()
+        if not access_token:
+            print("[PodbeanAPI] No access token available.")
+            return None
+    
+        headers = {'Authorization': f'Bearer {access_token}'}
+        url = f'{self.BASE_URL}/{endpoint}'
+    
+        try:
+            response = requests.post(url, headers=headers, json=data)
+            response.raise_for_status()
+            return response.json()
+        except requests.RequestException as e:
+            print(f"[PodbeanAPI] Error calling '{endpoint}': {e}")
+            return None
+
             
     def get_podcast(self):
         """
@@ -50,3 +67,4 @@ class PodbeanAPI(BaseAPI):
         Retrieves a specific episode using the Podbean API.
         """
         return self._make_get_request(f'episodes/{episode_id}')
+
