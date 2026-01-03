@@ -35,7 +35,6 @@ class SpotifyAPI(BaseAPI):
 
         client_id = self.secret_manager.get_secret(self.client_id_key)
         client_secret = self.secret_manager.get_secret(self.client_secret_key)
-        print(f"[SpotifyAPI] Client ID: {client_id}")
 
         if not client_id or not client_secret:
             print("[SpotifyAPI] Missing client ID or secret.")
