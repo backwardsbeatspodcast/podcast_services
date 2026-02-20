@@ -9,7 +9,6 @@ class TestPodbeanAPIIntegration(unittest.TestCase):
         self.assertIsNotNone(podcast_info, "Podcast information should not be None")
         self.assertIsInstance(podcast_info, dict)
         self.assertIn('podcast', podcast_info, "Podcast information should contain 'podcast' key")
-        #print(f"Podcast Information: {podcast_info}")
 
     def test_get_episodes(self):
         api = PodbeanAPI()

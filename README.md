@@ -11,6 +11,7 @@ In the future, the package will be expanded to support more music services and p
 
 It includes the following services:
 * Spotify
+* AI Services (Transcription via Whisper)
 * Last.fm (coming soon)
 * Discogs (coming soon)
 * MusicBrainz (coming soon)

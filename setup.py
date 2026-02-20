@@ -5,6 +5,8 @@ setup(
     version='0.1',
     packages=find_packages(
         include=[
+            'ai_services',
+            'ai_services.*',
             'music_services',
             'music_services.*',
             'podbean_services',
@@ -17,7 +19,9 @@ setup(
     ),
     install_requires=[
         'requests',
-        'python-dotenv'
+        'python-dotenv',
+        'openai-whisper',
+        'pydub'
     ],
     author='Dan Woodard',
     description='Shared services for podcast automation, including Spotify, Podbean, Last.FM, and secret management.',
