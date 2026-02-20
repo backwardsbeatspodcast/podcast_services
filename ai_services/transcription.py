@@ -15,7 +15,7 @@ class EpisodeTranscriber:
             episode_number: The episode number for naming the output file.
             output_folder: Optional folder to save the transcription. If not provided, saves in the same directory as the audio file.
         Returns:    The path to the saved transcription text file, or None if transcription failed.
-        ''':
+        '''
 
         if not os.path.exists(audio_file_path):
             print(f"[EpisodeTranscriber] Audio file not found: {audio_file_path}")
