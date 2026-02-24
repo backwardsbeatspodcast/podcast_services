@@ -2,13 +2,13 @@ from setuptools import setup, find_packages
 
 setup(
     name='backwards_beats_services',  # or any project-wide name
-    version='0.1.1',
+    version='0.1.2',
     packages=find_packages(exclude=['tests', 'tests.*']),
     install_requires=[
         'requests',
         'python-dotenv',
         'openai-whisper',
-        'numpy',
+        'numpy>=1.21.6,<1.28.0',
         'pydub'
     ],
     author='Dan Woodard',
