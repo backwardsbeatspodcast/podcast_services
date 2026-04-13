@@ -7,9 +7,10 @@ setup(
     install_requires=[
         'requests',
         'python-dotenv',
-        'openai-whisper',
+        'faster-whisper',
         'numpy>=1.21.6,<1.28.0',
-        'pydub'
+        'pydub',
+        'google-cloud-secret-manager'
     ],
     author='Dan Woodard',
     description='Shared services for podcast automation, including Spotify, Podbean, Last.FM, and secret management.',
